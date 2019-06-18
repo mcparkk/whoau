@@ -15,30 +15,31 @@ class ViewController: UIViewController {
     //utterance.voice = AVSpeechSynthesisVoice(language : "ko_KR")
     
     var myCamera:Camera!
-    
+    let synthesizer = AVSpeechSynthesizer()
     
     @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //myCamera = Camera(controller: self, andImageView: imageView)
-        let synthesizer = AVSpeechSynthesizer()
-        let utterance = AVSpeechUtterance(string : "친구들을 만나느라 샤샤샤 조르지마 어디가지 않아 부르게해줄게 베이베.")
         
-        utterance.voice = AVSpeechSynthesisVoice (language: "ko_KR")
+        let utterance1 = AVSpeechUtterance(string : "얼굴 인식 학습을 하시려면 화면 위쪽을, 얼굴 인식 기능 사용은 화면 아래쪽을 눌러주세요.")
         
+        utterance1.voice = AVSpeechSynthesisVoice (language: "ko_KR")
         
-        synthesizer.speak(utterance)
+        synthesizer.speak(utterance1)
+        
     }
     override func viewDidAppear(_ animated: Bool) {
-       // myCamera.start()
+        // myCamera.start()
     }
     
     // Stop it when it disappears
     override func viewWillDisappear(_ animated: Bool) {
-       // myCamera.stop()
-    }
+        // myCamera.stop()
+        synthesizer.stopSpeaking(at: .immediate)
     
 }
 
 
+}
